@@ -124,18 +124,13 @@ frm.btCancelar.addEventListener("click", () => {
     const ocupadas = localStorage.getItem("teatroOcupadas")
     ? localStorage.getItem("teatroOcupadas").split(";")
     : [];
-
-    //verificar se não há poltronas ocupadas
     if (ocupadas.length == 0){
         alert("Não há poltronas ocupadas");
         frm.inPoltrona.focus();
         return;
     }
-
-    //obtém o conteúdo do input
     const poltrona = Number(frm.inPoltrona.value);
-
-    if (confirm(`Confirma o cancelamento da reserva ${poltrona}?`)){
+    if (confirm(`Confirmar o cancelamento da poltrona: ${poltrona}?`)){
         for(let i = ocupadas.length - 1; i>=0; i--){
             if (ocupadas[i] == poltrona){
                 const imgPoltrona = dvPalco.querySelectorAll("img")[ocupadas[i]-1];
@@ -145,8 +140,6 @@ frm.btCancelar.addEventListener("click", () => {
             }
         }
     }
-    console.log(poltrona);
-    console.log(ocupadas);
     frm.inPoltrona.value = "";
     frm.inPoltrona.focus();
     localStorage.setItem("teatroOcupadas", ocupadas.join(";"));
